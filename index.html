@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSC 106 Project 2: Persuasive/Deceptive Visualization</title>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; max-width: 980px; margin: 0 auto; padding: 2rem; color: #1f1f1f; background: #fafafa; }
+    h1 { line-height: 1.15; }
+    h2 { margin-top: 2.5rem; border-bottom: 2px solid #ddd; padding-bottom: .35rem; }
+    h3 { margin-top: 1.75rem; }
+    .meta, .caption { color: #555; }
+    .card { background: white; border: 1px solid #e2e2e2; border-radius: 14px; padding: 1.4rem; margin: 1.25rem 0; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    img { max-width: 100%; display: block; margin: 1rem auto; border: 1px solid #ddd; background: white; }
+    .score { font-weight: 700; }
+    li { margin-bottom: .85rem; }
+  </style>
+</head>
+<body>
+  <h1>Project 2: Persuasive/Deceptive Visualization</h1>
+  <p class="meta"><strong>Dataset:</strong> Civilian Complaints Against New York City Police Officers, released by ProPublica.</p>
+  <p><strong>Proposition:</strong> The CCRB investigation process is ineffective, as the vast majority of civilian complaints result in no disciplinary action for officers.</p>
+
+  <section class="card">
+    <h2>Positive Side: The CCRB Process Looks Ineffective</h2>
+    <p class="caption"><strong>Subtitle:</strong> Total number of CCRB complaints plotted against number of complaints that ended with officer punishment.</p>
+    <img src="nypd_accountability_gap.png" alt="Bar chart comparing total CCRB complaints with cases held accountable through substantiated charges" />
+    <h3>Design decisions and rationale</h3>
+    <ul>
+      <li><span class="score">Score: -1.0.</span> For the “Held Accountable” bar, I filtered the dataset to complaints that ended with the officer actually being charged, labeled in the data as “Substantiated (Charges).” I excluded rows that ended in substantiation but with smaller outcomes, such as formal training or command discipline. This technically uses a real category from the data, but it is deceptive because it intentionally defines accountability in the narrowest possible way to make the successful outcome look smaller.</li>
+      <li><span class="score">Score: -2.0.</span> I set the y-axis minimum to 2,000 instead of 0. This visually chops off the bottom of both bars and makes the “Held Accountable” bar look even smaller relative to the total number of complaints. I considered using a logarithmic scale, but decided against it because a log scale would make the manipulation more obvious. The truncated axis creates a stronger emotional impression while still looking like a standard bar chart at first glance.</li>
+      <li><span class="score">Score: -0.5.</span> I used muted dark charcoal for total complaints and a vivid red for the substantiated charges bar. The gray makes the total feel neutral and institutional, while the red makes the smaller accountability bar feel urgent. This is only mildly deceptive because color emphasis is a normal design choice, but here it is being used to guide the reader toward the “accountability gap” interpretation.</li>
+      <li><span class="score">Score: -0.5.</span> I used a strong title, “The NYPD Accountability Gap,” and added annotations that emphasize the 89% of cases without formal charges and the 11% that ended with punitive officer punishment. The numbers are based on the data, but the wording pushes the reader toward one interpretation before they have time to consider other definitions of accountability.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Negative Side: The CCRB Process Can Be Framed as Improving</h2>
+    <p><strong>Opposing proposition:</strong> The CCRB investigation process is effective, as substantiated findings have increased substantially over time, indicating improved investigative outcomes.</p>
+    <img src="ccrb_effectiveness_over_time.png" alt="Line chart showing substantiated CCRB findings increasing over time" />
+    <h3>Design decisions and rationale</h3>
+    <ul>
+      <li><span class="score">Score: -0.5.</span> I grouped the data by <code>year_received</code> and included every case where <code>board_disposition</code> contains “Substantiated.” This includes formal charges as well as smaller disciplinary actions like formal training, command discipline, and instructions. This broader definition increases the number of successful cases and makes the upward trend look stronger, so it is persuasive but still tied to a real field in the dataset.</li>
+      <li><span class="score">Score: -1.0.</span> I calculated the increase from 1995 to 2019 and highlighted it in the subtitle as a +718% increase. This makes the trend feel dramatic and easy to remember. However, the start year is selectively chosen because earlier years had very small values, and 2020 is not used because the dataset does not contain a full year of received complaints. This is a selective framing choice that supports the argument.</li>
+      <li><span class="score">Score: -0.5.</span> I used a line chart to emphasize change over time, then highlighted the years after 2010 in blue while keeping earlier years gray. The data values are not changed, but the color directs the viewer’s attention to the recent period where the increase is most visible.</li>
+      <li><span class="score">Score: -1.0.</span> I added an annotation near the peak that says the sharp increase suggests improved investigations. This directly tells the viewer how to interpret the trend instead of leaving the cause open-ended. It is persuasive because it connects the visual trend to the argument, but it may overstate what the chart can prove by itself.</li>
+      <li><span class="score">Score: 0.5.</span> I kept the axes clear and used a consistent y-axis scale starting at 0. This makes the visualization easier to read and helps it appear trustworthy, even though the framing still selectively emphasizes the more favorable story.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Final Reflection</h2>
+    <p>The most straightforward part of this project was finding two true but opposite stories in the same dataset. The CCRB data makes it easy to argue that complaints rarely lead to serious accountability because only a small share of all allegations end in substantiated charges. At the same time, the data can also support a more positive argument if accountability is defined more broadly and the focus shifts to changes over time. What surprised me was how much the conclusion changed depending on whether I used counts, percentages, narrow categories, broad categories, or a time trend.</p>
+    <p>The hardest part was deciding where persuasion becomes misleading. For example, filtering to only “Substantiated (Charges)” is not fabricated, but it hides other forms of substantiated discipline. Similarly, highlighting the rise in substantiated findings over time is accurate, but it does not prove that the entire investigation process is effective. These choices showed me that ethical visualization is not just about avoiding fake numbers. It also means being honest about definitions, missing context, and what the chart can or cannot prove.</p>
+    <p>After making both sides, I would define ethical analysis and visualization as presenting data in a way that is clear about its transformations and does not rely on hiding important context from the reader. Persuasive choices can be acceptable when they help viewers understand a real pattern, such as using annotations, color, or grouping. They become misleading when the design depends on the viewer not noticing a key decision, such as a truncated axis or an intentionally narrow definition of accountability. Overall, I lean toward the first side of the proposition because the overall share of complaints leading to formal charges is low, but the second visualization shows that the same dataset can still be framed as evidence of improvement.</p>
+  </section>
+</body>
+</html>
