@@ -24,7 +24,7 @@
   <section class="card">
     <h2>Positive Side: The CCRB Process Looks Ineffective</h2>
     <p class="caption"><strong>Subtitle:</strong> Total number of CCRB complaints plotted against number of complaints that ended with officer punishment.</p>
-    <img src="nypd_accountability_gap.png" alt="Bar chart comparing total CCRB complaints with cases held accountable through substantiated charges" />
+    <img src="positive.png" alt="Bar chart comparing total CCRB complaints with cases held accountable through substantiated charges" />
     <h3>Design decisions and rationale</h3>
     <ul>
       <li><span class="score">Score: -1.0.</span> For the “Held Accountable” bar, I filtered the dataset to complaints that ended with the officer actually being charged, labeled in the data as “Substantiated (Charges).” I excluded rows that ended in substantiation but with smaller outcomes, such as formal training or command discipline. This technically uses a real category from the data, but it is deceptive because it intentionally defines accountability in the narrowest possible way to make the successful outcome look smaller.</li>
@@ -37,7 +37,7 @@
   <section class="card">
     <h2>Negative Side: The CCRB Process Can Be Framed as Improving</h2>
     <p><strong>Opposing proposition:</strong> The CCRB investigation process is effective, as substantiated findings have increased substantially over time, indicating improved investigative outcomes.</p>
-    <img src="ccrb_effectiveness_over_time.png" alt="Line chart showing substantiated CCRB findings increasing over time" />
+    <img src="negative.png" alt="Line chart showing substantiated CCRB findings increasing over time" />
     <h3>Design decisions and rationale</h3>
     <ul>
       <li><span class="score">Score: -0.5.</span> I grouped the data by <code>year_received</code> and included every case where <code>board_disposition</code> contains “Substantiated.” This includes formal charges as well as smaller disciplinary actions like formal training, command discipline, and instructions. This broader definition increases the number of successful cases and makes the upward trend look stronger, so it is persuasive but still tied to a real field in the dataset.</li>
